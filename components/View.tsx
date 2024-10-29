@@ -10,9 +10,9 @@ const View = async ({id} : {id: string}) => {
         useCdn: false
     }).fetch(STARTUP_VIEWS_QUERY, {id})
 
-    // Todo: Update the number of views
-
-    after(async () => await writeClient.patch(id).set({views: totalViews + 1}).commit());
+    // Uncomment this if only experimental ppr is true
+    // after(async () => await writeClient.patch(id).set({views: totalViews + 1}).commit());
+    await writeClient.patch(id).set({views: totalViews + 1}).commit()
 
     return (
         <div className="view-container">
